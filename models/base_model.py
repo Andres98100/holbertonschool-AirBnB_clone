@@ -7,7 +7,6 @@ from datetime import datetime
 '''class'''
 
 
-
 class BaseModel:
     def __init__(self, *args, **kwargs):
         self.id = str(uuid.uuid4())
