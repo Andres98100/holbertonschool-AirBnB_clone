@@ -22,6 +22,12 @@ class Test_base_model(unittest.TestCase):
         self.obj.save()
         new_updated_at = self.obj.updated_at
         self.assertGreater(new_updated_at, original_updated_at)
-
+    """"method str"""
+    def test_str(self):
+        string = f"[{self.obj.__class__.__name__}] ({self.obj.id}) {self.obj.__dict__}"
+        self.assertEquals(string, self.obj.__str__())
+    """method to_dict"""
+    def test_dict(self):
+        pass
 if __name__ == "__main__":
     unittest.main()
