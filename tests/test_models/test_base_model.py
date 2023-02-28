@@ -19,8 +19,6 @@ class Test_base_model(unittest.TestCase):
         self.obj.id = "test_id"
         self.obj.created_at = datetime.now()
         self.obj.updated_at = datetime.now()
-        self.obj.name = "Test Name"
-        self.obj.age = 30
     """method save"""
     def test_save(self):
         """Test that save updates the updated_at attribute"""
@@ -36,12 +34,13 @@ class Test_base_model(unittest.TestCase):
     """method to_dict"""
     def test_dict(self):
         """test dict"""
-        original = {"id": self.obj.id,
-                    "__class__": self.obj.__class__.__name__,
-                    "created_at": self.obj.created_at,
-                    "updated_at": self.obj.updated_at,
-                    }
-        self.assertNotEqual(original, self.obj.to_dict())
+        original = {
+            "id": "test_id",
+            "created_at": self.obj.created_at.isoformat(),
+            "updated_at": self.obj.updated_at.isoformat(),
+            "__class__": "BaseModel"
+        }
+        self.assertDictEqual(original, self.obj.to_dict())
 
 if __name__ == "__main__":
     unittest.main()
