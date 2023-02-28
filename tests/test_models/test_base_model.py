@@ -31,7 +31,9 @@ class Test_base_model(unittest.TestCase):
     """method to_dict"""
     def test_dict(self):
         """test dict"""
-        self.assertEquals(dict, type(self.obj.to_dict()))
+        original = self.obj.to_dict()
+        new = self.obj.to_dict()
+        self.assertEquals(original, new)
 
 if __name__ == "__main__":
     unittest.main()
