@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """import"""
 import json
-import os.path
 """class"""
 
 
@@ -18,10 +17,15 @@ class FileStorage:
         self.__objects[key] = obj
     """method write in a file json"""
     def save(self):
+        new_dict = {}
+        for key, value in self.__objects.items():
+            new_dict[key] = value.to_dict()
         with open(self.__file_path, "w") as file:
-            file.write(json.dumps(self.__objects))
+            json.dump(new_dict, file)
     """method read a file json"""
     def reload(self):
-        if os.path.exists(self.__file_path):
-            with open(self.__file_path, "r") as file:
+        try:
+            with open(self.__file_path, 'r') as file:
                 self.__objects = json.loads(file.read())
+        except FileNotFoundError:
+            pass
