@@ -1,9 +1,11 @@
 #!/usr/bin/python3
-
+"""module for a class that inherits from cmd"""
 import cmd
 
 
 class HBNBCommand(cmd.Cmd):
+    """A custom command line class for the AirBnB
+    project based on the base class cmd"""
     
     prompt = "(hbnb) "
 
