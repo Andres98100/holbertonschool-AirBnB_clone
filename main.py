@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 import os
-from datetime import datetime
 from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
 
@@ -19,19 +18,14 @@ try:
 except:
     pass
 ids = []
-
-# First create
-for i in range(1):
+objs_by_id = {}
+for i in range(10):
     bm = BaseModel()
-    bm.updated_at = datetime.utcnow()
     fs.new(bm)
+    bm.save()
     ids.append(bm.id)
+    objs_by_id[bm.id] = bm
 
-try:
-    os.remove(file_path)
-except:
-    pass
-fs.save()
 try:
     fs._FileStorage__objects.clear()
 except:
@@ -41,39 +35,21 @@ fs.reload()
 all_reloaded = fs.all()
 
 if len(all_reloaded.keys()) != len(ids):
-    print("Missing after reload 1")
+    print("Missing after reload")
 
 for id in ids:
     if all_reloaded.get(id) is None and all_reloaded.get("{}.{}".format("BaseModel", id)) is None:
-        print("Missing 1 {}".format(id))
-
-from models import storage
-storage.reload()
-
-# Second create
-for i in range(2):
-    bm = BaseModel()
-    bm.save()
-    ids.append(bm.id)
-try:
-    os.remove(file_path)
-except:
-    pass
-storage.save()
-try:
-    fs._FileStorage__objects.clear()
-except:
-    pass
-storage.reload()
-
-all_reloaded = storage.all()
-
-if len(all_reloaded.keys()) != len(ids):
-    print("Missing after reload 2")
+        print("Missing {}".format(id))
 
 for id in ids:
-    if all_reloaded.get(id) is None and all_reloaded.get("{}.{}".format("BaseModel", id)) is None:
-        print("Missing 2 {}".format(id))
+    obj_reloaded = all_reloaded.get(id)
+    if obj_reloaded is None:
+        obj_reloaded = all_reloaded.get("{}.{}".format("BaseModel", id))
+    print(obj_reloaded.__class__.__name__)
+    obj_created = objs_by_id[id]
+    print(obj_reloaded.id == obj_created.id)
+    print(obj_reloaded.created_at == obj_created.created_at)
+    print(obj_reloaded.updated_at == obj_created.updated_at)
 
 try:
     os.remove(file_path)

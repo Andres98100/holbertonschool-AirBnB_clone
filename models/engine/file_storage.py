@@ -24,8 +24,10 @@ class FileStorage:
             json.dump(new_dict, file)
     """method read a file json"""
     def reload(self):
+        from models.base_model import BaseModel
         try:
             with open(self.__file_path, 'r') as file:
-                self.__objects = json.loads(file.read())
+                for key, value in json.loads(file.read()).items():
+                    self.__objects[key] = BaseModel(**value)
         except FileNotFoundError:
             pass
