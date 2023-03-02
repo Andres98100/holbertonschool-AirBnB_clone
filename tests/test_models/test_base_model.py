@@ -28,7 +28,7 @@ class TestBaseModel(unittest.TestCase):
 
     def test_save_method(self):
         """Test case for 'save' method"""
-        datetime_prev = self.base_model.updated_at
+        datetime_prev = datetime.now()
         self.base_model.save()
         self.assertGreater(self.base_model.updated_at, datetime_prev)
 
