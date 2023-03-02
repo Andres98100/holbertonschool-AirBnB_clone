@@ -8,4 +8,9 @@ from models.amenity import Amenity
 
 class TestAmenity(unittest.TestCase):
     """testing the correct functioning of the class"""
-    pass
+    def test_name(self):
+        amenity = Amenity()
+        self.assertEqual(amenity.name, "")
+
+if __name__ == '__main__':
+    unittest.main()
