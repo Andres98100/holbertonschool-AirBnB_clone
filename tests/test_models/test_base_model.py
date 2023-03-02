@@ -1,46 +1,54 @@
 #!/usr/bin/python3
-"""import"""
+"""Unittest for BaseModel class"""
 import unittest
 from models.base_model import BaseModel
 from datetime import datetime
-"""class"""
+import os
 
 
-class Test_base_model(unittest.TestCase):
-    """method test created"""
-    def test_creation(self):
-        """test"""
-        obj = BaseModel()
-        self.assertEqual(datetime, type(obj.updated_at))
-    """method getter"""
-    def setUp(self):
-        """assign the class"""
-        self.obj = BaseModel()
-        self.obj.id = "test_id"
-        self.obj.created_at = datetime.now()
-        self.obj.updated_at = datetime.now()
-    """method save"""
-    def test_save(self):
-        """Test that save updates the updated_at attribute"""
-        original_updated_at = self.obj.updated_at
-        self.obj.save()
-        new_updated_at = self.obj.updated_at
-        self.assertGreater(new_updated_at, original_updated_at)
-    """"method str"""
-    def test_str(self):
-        """test str"""
-        string = f"[{self.obj.__class__.__name__}] ({self.obj.id}) {self.obj.__dict__}"
-        self.assertEqual(string, self.obj.__str__())
-    """method to_dict"""
-    def test_dict(self):
-        """test dict"""
-        original = {
-            "id": "test_id",
-            "created_at": self.obj.created_at.isoformat(),
-            "updated_at": self.obj.updated_at.isoformat(),
-            "__class__": "BaseModel"
+class TestBaseModel(unittest.TestCase):
+    """Test cases for BaseModel class"""
+
+    @classmethod
+    def setUpClass(cls):
+        """Sets the class/obj"""
+        cls.base_model = BaseModel()
+        try:
+            os.rename("file.json", "real.json")
+        except Exception:
+            pass
+
+    @classmethod
+    def tearDownClass(cls):
+        try:
+            os.remove("file.json")
+            os.rename("real.json", "file.json")
+        except Exception:
+            pass
+
+    def test_save_method(self):
+        """Test case for 'save' method"""
+        datetime_prev = self.base_model.updated_at
+        self.base_model.save()
+        self.assertGreater(self.base_model.updated_at, datetime_prev)
+
+    def test_str_method(self):
+        """Test case for str instance representation"""
+        cls_name = str(self.base_model.__class__.__name__)
+        obj_dict = str(self.base_model.__dict__)
+        obj_str = f"[{cls_name}] ({self.base_model.id}) {obj_dict}"
+        self.assertEqual(obj_str, self.base_model.__str__())
+
+    def test_to_dict_method(self):
+        """Test case for 'to_dict' method"""
+        dict = {
+            "id": self.base_model.id,
+            "__class__": self.base_model.__class__.__name__,
+            "created_at": self.base_model.created_at.isoformat(),
+            "updated_at": self.base_model.updated_at.isoformat()
         }
-        self.assertDictEqual(original, self.obj.to_dict())
+        self.assertDictEqual(dict, self.base_model.to_dict())
+
 
 if __name__ == "__main__":
     unittest.main()
