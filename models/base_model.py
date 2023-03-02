@@ -17,7 +17,8 @@ class BaseModel:
                 if key != "__class__":
                     setattr(self, key, value)
                 if key in ["created_at", "updated_at"]:
-                    setattr(self, key, datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f"))
+                    setattr(self, key, datetime.strptime(value, "%Y-%m-%d"
+                                                         "T%H:%M:%S.%f"))
         storage.new(self)
 
     def __str__(self):
