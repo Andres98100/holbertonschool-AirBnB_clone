@@ -106,7 +106,29 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, line):
         """documentation"""
-        pass
+        args = line.split()
+        print(args)
+        if len(args) == 0:
+            print("** class name missing **")
+            return
+        if args[0] not in classes:
+            print("** class doesn't exist **")
+            return
+        if len(args) == 1:
+            print("** instance id missing **")
+            return
+        key = args[0] + "." + args[1]
+        if key not in storage.all():
+            print("** no instance found **")
+            return
+        if len(args) == 2:
+            print("** attribute name missing **")
+            return
+        if len(args) == 3:
+            print("** value missing **")
+            return
+        setattr(storage.all()[key], args[2], args[3])
+        storage.save()
 
 
 if __name__ == '__main__':

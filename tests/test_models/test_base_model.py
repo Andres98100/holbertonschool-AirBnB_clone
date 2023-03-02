@@ -30,7 +30,7 @@ class Test_base_model(unittest.TestCase):
     def test_str(self):
         """test str"""
         string = f"[{self.obj.__class__.__name__}] ({self.obj.id}) {self.obj.__dict__}"
-        self.assertEquals(string, self.obj.__str__())
+        self.assertEqual(string, self.obj.__str__())
     """method to_dict"""
     def test_dict(self):
         """test dict"""
