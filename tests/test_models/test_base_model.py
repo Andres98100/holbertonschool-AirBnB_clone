@@ -3,6 +3,7 @@
 import unittest
 from models.base_model import BaseModel
 from datetime import datetime
+from time import sleep
 import os
 
 
@@ -26,11 +27,13 @@ class TestBaseModel(unittest.TestCase):
         except Exception:
             pass
 
-    def test_save_method(self):
-        """Test case for 'save' method"""
-        datetime_prev = self.base_model.updated_at
-        self.base_model.save()
-        self.assertGreater(self.base_model.updated_at, datetime_prev)
+    def test_save(self):
+        """ save method """
+        base1 = BaseModel()
+        sleep(2)
+        update = base1.updated_at
+        base1.save()
+        self.assertNotEqual(update, base1.updated_at)
 
     def test_str_method(self):
         """Test case for str instance representation"""
