@@ -86,8 +86,23 @@ class HBNBCommand(cmd.Cmd):
         storage.save()
 
     def do_all(self, line):
-        """documentation"""
-        pass
+        """Prints all string representation of all instances"""
+        args = line.split()
+        objs_list = []
+        if len(args) == 0:
+            for value in storage.all().values():
+                objs_list.append(str(value))
+            print(objs_list)
+            return
+        if args[0] not in classes:
+            print("** class doesn't exist **")
+            return
+        if len(args) == 1:
+            print("Para imprimir solo la clase")
+            for args[0] in storage.all().values():
+                objs_list.append(str(args[0]))
+            print(objs_list)
+            return
 
     def do_update(self, line):
         """documentation"""
