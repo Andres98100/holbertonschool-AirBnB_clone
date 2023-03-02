@@ -98,16 +98,14 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
             return
         if len(args) == 1:
-            print("Para imprimir solo la clase")
             for args[0] in storage.all().values():
                 objs_list.append(str(args[0]))
             print(objs_list)
             return
 
     def do_update(self, line):
-        """documentation"""
+        """Updates an instance based on the class name and id"""
         args = line.split()
-        print(args)
         if len(args) == 0:
             print("** class name missing **")
             return
