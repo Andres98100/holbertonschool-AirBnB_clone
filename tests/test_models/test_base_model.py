@@ -14,7 +14,7 @@ class TestBaseModel(unittest.TestCase):
         """Sets the class/obj"""
         cls.base_model = BaseModel()
         try:
-            os.rename("file.json", "real.json")
+            os.rename("file.json", "test_file.json")
         except Exception:
             pass
 
@@ -22,18 +22,17 @@ class TestBaseModel(unittest.TestCase):
     def tearDownClass(cls):
         try:
             os.remove("file.json")
-            os.rename("real.json", "file.json")
+            os.rename("test_file.json", "file.json")
         except Exception:
             pass
 
     def test_save_method(self):
-        """Test case for 'save' method"""
-        try:
-            datetime_prev = self.base_model.updated_at
-            self.base_model.save()
-            self.assertGreater(self.base_model.updated_at, datetime_prev)
-        except Exception:
-            pass
+        """Test save method"""
+        base1 = BaseModel()
+        update = base1.updated_at
+        base1.save()
+        self.assertLess(update, base1.updated_at)
+        self.assertTrue(os.path.exists("file.json"))
 
     def test_str_method(self):
         """Test case for str instance representation"""
