@@ -2,7 +2,7 @@
 """import"""
 import unittest
 from models.base_model import BaseModel
-from datetime import datetime
+
 import os
 
 
@@ -27,10 +27,12 @@ class TestBaseModel(unittest.TestCase):
             pass
 
     def test_save_method(self):
+        from models import storage
         """Test case for 'save' method"""
-        datetime_prev = datetime.now()
+        datetime_prev = self.base_model.updated_at
         self.base_model.save()
         self.assertGreater(self.base_model.updated_at, datetime_prev)
+        self.assertIn(self.base_model, storage.all().values())
 
     def test_str_method(self):
         """Test case for str instance representation"""
