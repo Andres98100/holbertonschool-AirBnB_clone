@@ -29,13 +29,13 @@
     :computer: Console
 </h3>
 
-<h3>
-    👨🏻‍💻 command interpreter
-</h3>
-
 <p>
     the console is the first version of a web application, we use it to interact with the Back-End and to manage a database that is in json file format.
 </p>
+
+<h3>
+    👨🏻‍💻 command interpreter
+</h3>
 
 <table>
     <tr>
