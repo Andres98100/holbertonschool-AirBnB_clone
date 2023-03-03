@@ -37,7 +37,7 @@
     👨🏻‍💻 command interpreter
 </h3>
 
-<table>
+<table align="center">
     <tr>
         <th>Commands</th>
         <th>Usage</th>
