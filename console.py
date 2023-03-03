@@ -125,6 +125,8 @@ class HBNBCommand(cmd.Cmd):
         if len(args) == 3:
             print("** value missing **")
             return
+        if type(args[3]) == str:
+            args[3] = args[3].strip('"').replace('"', '')
         setattr(storage.all()[key], args[2], args[3])
         storage.save()
 

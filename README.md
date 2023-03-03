@@ -86,6 +86,7 @@
 <p>
     $ ./console.py
 
+    $ ./console.py
     (hbnb) help
     Documented commands (type help <topic>):
     ========================================
@@ -95,6 +96,24 @@
     (hbnb) 
     (hbnb) quit
     $
+</p>
+
+<h3>
+    How use it
+</h3>
+
+<p>
+    $./console.py
+
+    (hbnb) create BaseModel
+    49faff9a-6318-451f-87b6-910505c55907
+    (hbnb) all BaseModel
+    ["[BaseModel] (49faff9a-6318-451f-87b6-910505c55907) {'created_at': datetime.datetime(2017, 10, 2, 3, 10, 25, 903293), 'id': '49faff9a-6318-451f-87b6-910505c55907', 'updated_at': datetime.datetime(2017, 10, 2, 3, 10, 25, 903300)}"]
+    (hbnb) show BaseModel 49faff9a-6318-451f-87b6-910505c55907
+
+    [BaseModel] (49faff9a-6318-451f-87b6-910505c55907) {'created_at': datetime.datetime(2017, 10, 2, 3, 10, 25, 903293), 'id': '49faff9a-6318-451f-87b6-910505c55907', 'updated_at': datetime.datetime(2017, 10, 2, 3, 10, 25, 903300)}
+    (hbnb) update BaseModel 49faff9a-6318-451f-87b6-910505c55907 first_name "Betty"
+    (hbnb) update BaseModel 49faff9a-6318-451f-87b6-910505c55907 first_name "Betty"
 </p>
 
 <h2>
