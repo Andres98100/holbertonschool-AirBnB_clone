@@ -79,7 +79,23 @@
 
 <img src="img/design.png">
 
+<h3>
+    Execution
+</h3>
 
+<p>
+    $ ./console.py
+
+    (hbnb) help
+    Documented commands (type help <topic>):
+    ========================================
+    EOF  help  quit
+
+    (hbnb) 
+    (hbnb) 
+    (hbnb) quit
+    $
+</p>
 
 <h2>
     Authors
