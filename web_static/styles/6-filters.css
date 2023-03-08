@@ -18,6 +18,7 @@ h4 {
     margin-top: -15px;
     padding-left: 50px;
     margin-right: 65px;
+    font-size: 14px;
 }
 ul {
     color: #484848;
@@ -90,7 +91,6 @@ button:hover {
     padding-bottom: 20px;
     top: 100%;
 } 
-
 
 .locations:hover .popover{
     display: block;
