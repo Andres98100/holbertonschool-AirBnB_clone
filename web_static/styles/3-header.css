@@ -7,7 +7,7 @@ header{
     align-items: center;
 }
 
-#logo{
+.logo{
     background: url("../images/logo.png");
     margin-left: 20px;
     height: 60px;
