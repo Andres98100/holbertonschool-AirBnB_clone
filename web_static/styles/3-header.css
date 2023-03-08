@@ -9,7 +9,7 @@ header{
 
 #logo{
     background: url("../images/logo.png");
-    left: 20px;
+    margin-left: 20px;
     height: 60px;
     width: 140px;
 }
