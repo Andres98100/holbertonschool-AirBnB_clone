@@ -25,9 +25,15 @@ class FileStorage:
     """method read a file json"""
     def reload(self):
         from models.base_model import BaseModel
+        from models.amenity import Amenity
+        from models.city import City
+        from models.user import User
+        from models.place import Place
+        from models.review import Review
+        from models.state import State
         try:
             with open(self.__file_path, 'r') as file:
-                for key, value in json.loads(file.read()).items():
-                    self.__objects[key] = BaseModel(**value)
+                for value in json.loads(file.read()).values():
+                    eval(value["__class__"])(**value)
         except FileNotFoundError:
             pass

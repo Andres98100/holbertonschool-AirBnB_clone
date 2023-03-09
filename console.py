@@ -98,8 +98,9 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
             return
         if len(args) == 1:
-            for args[0] in storage.all().values():
-                objs_list.append(str(args[0]))
+            for key in storage.all().keys():
+                if args[0] in key:
+                    objs_list.append(str(storage.all()[key]))
             print(objs_list)
             return
 
